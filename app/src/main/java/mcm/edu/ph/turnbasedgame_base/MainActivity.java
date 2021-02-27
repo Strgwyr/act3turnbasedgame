@@ -2,6 +2,7 @@ package mcm.edu.ph.turnbasedgame_base;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,7 +12,8 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-
+    MediaPlayer mainsound;
+    MediaPlayer juggnsven;
 
     /** variables to be moved to other individual classes **/
     //Hero Class
@@ -36,6 +38,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(s);
         setContentView(R.layout.activity_main);
 
+        mainsound = MediaPlayer.create(MainActivity.this,R.raw.mainactivitysound);
+        mainsound.start();
+
+        juggnsven = MediaPlayer.create(MainActivity.this,R.raw.jugnsven);
+        juggnsven.start();
 
         Button nextTurn = findViewById(R.id.btnNextTurn);
 
@@ -146,4 +153,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;  // switch breaker for the button function. DO NOT EDIT
         }
     }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mainsound.release();
+        juggnsven.release();
+        finish();
+    }
 }
+
