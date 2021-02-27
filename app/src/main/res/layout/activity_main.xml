@@ -8,13 +8,14 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="960dp"
+        android:layout_height="441dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.109"
         app:srcCompat="@drawable/dotabg" />
 
     <pl.droidsonroids.gif.GifImageView
@@ -93,7 +94,7 @@
 
     <TextView
         android:id="@+id/txtPlayer_name"
-        android:layout_width="44dp"
+        android:layout_width="80dp"
         android:layout_height="20dp"
         android:background="#2d2e2d"
         android:fontFamily="@font/architects_daughter"

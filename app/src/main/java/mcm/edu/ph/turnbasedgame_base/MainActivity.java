@@ -19,13 +19,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //Hero Class
 
 
-    Hero sol = new Hero("Sol Badguy", 2000, 500, 65, 100, 15, 25, 15);
+    Hero jug = new Hero("Juggernaut", 2000, 500, 65, 100, 15, 25, 15);
 
     //Monster Class
     int monsHP =        1000;
     int monsMinDPT =    100;
     int monsMaxDPT =    150;
-    String monsName  =  "Ky Kiske";
+    String monsName  =  "Sven";
     /** exportable variables end **/
 
     int turnNumber = 1; //This variable is responsible for counting how many turns the game has.
@@ -56,13 +56,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         TextView txtMonsDPT = findViewById(R.id.txtEnemyDPT);
 
         /** Setting of the previously declared TextViews so it has information shown right from the start**/
-        txtHeroName.setText(sol.getUnitName());
+        txtHeroName.setText(jug.getUnitName());
         txtMonsName.setText(monsName);
         /** directly putting integers as it is will cause an error, so heroHP and monsHP are first converted to string using String.valueOf() Method**/
-        txtHeroHP.setText(String.valueOf(sol.getbaseHealth()));
+        txtHeroHP.setText(String.valueOf(jug.getbaseHealth()));
         txtMonsHP.setText(String.valueOf(monsHP));
         /** to display the damage ranges of of player and enemy, i showed the minimum damage, the the maximum possible damage **/
-        txtHeroDPT.setText(sol.getMinDPT()+ " ~ "+ sol.getMaxDPT());
+        txtHeroDPT.setText(jug.getMinDPT()+ " ~ "+ jug.getMaxDPT());
         txtMonsDPT.setText(monsMinDPT+ " ~ "+monsMaxDPT);
         /** setting the onClickListener for the button to allow it to "sense" user input **/
         nextTurn.setOnClickListener(this);
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         /** We displayed the HP values here to reset the display every time the button is clicked**/
         txtMonsHP.setText(String.valueOf(monsHP));
-        txtHeroHP.setText(String.valueOf(sol.getbaseHealth()));
+        txtHeroHP.setText(String.valueOf(jug.getbaseHealth()));
 
         /** the randomizer we declared earlier was used in the declaration of turn damage of the player and the enemy.
          *  Each time onClick() is executed, the randomizer generates a number from the range provided, in our case, it
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
          *  for the player, it should be (100 - 75), which is 25. now the randomizer has a range from zero to 25.
          *  Then, we add back the minimum damage that we deducted earlier which is 75. In this way, we can simulate the
          *  the range of 75 to 100. **/
-        int heroDPT = randomizer.nextInt(sol.getMaxDPT() - sol.getMinDPT()) + sol.getMinDPT();
+        int heroDPT = randomizer.nextInt(jug.getMaxDPT() - jug.getMinDPT()) + jug.getMinDPT();
         int monsDPT = randomizer.nextInt(monsMaxDPT - monsMinDPT) + monsMinDPT;
 
         /** the switch for the button/s starts here. DO NOT MODIFY!**/
@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                      * Every value has to be reset manually.**/
                     if (monsHP < 0){
                         txtCombatLog.setText("The Player dealt " +heroDPT+ " damage to the Enemy. The Player was Victorious!");
-                        sol.setBasehealth(1500);
+                        jug.setBasehealth(1500);
                         monsHP = 1000;
                         turnNumber = 1;
                         nextTurn.setText("Reset Game");
@@ -137,14 +137,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                  * "IF TURN NUMBER HAS NO REMAINDER WHEN DIVIDED BY TWO"). The code below will not be explained
                  * any further as it is just a mirror of the code we have for the player turn**/
                 else if(turnNumber%2 != 1){
-                    sol.setBasehealth(sol.getbaseHealth() - monsDPT);
+                    jug.setBasehealth(jug.getbaseHealth() - monsDPT);
                     turnNumber++;
                     txtCombatLog.setText("The Monster dealt " +monsDPT+ " damage to the Player");
-                    txtHeroHP.setText(String.valueOf(sol.getbaseHealth()));
+                    txtHeroHP.setText(String.valueOf(jug.getbaseHealth()));
                     nextTurn.setText("Player's Turn ("+turnNumber+ ")");
-                    if (sol.getbaseHealth() < 0){
+                    if (jug.getbaseHealth() < 0){
                         txtCombatLog.setText("The Monster dealt " +monsDPT+ " damage to the Player. The Player Died");
-                        sol.setBasehealth(1500);
+                        jug.setBasehealth(1500);
                         monsHP = 1000;
                         turnNumber = 1;
                         nextTurn.setText("Reset Game");
